@@ -8,8 +8,9 @@ const Header = () => {
   const menuItems = [
     { label: 'Home', route: 'Home' },
     { label: 'Products', route: 'Products' },
-    { label: 'About', route: 'About' },          // ky është butoni About për navigim
-   
+    { label: 'About', route: 'About' },
+    { label: 'Login', route: 'Login' },
+    { label: 'Register', route: 'Register' },
   ];
 
   return (
@@ -19,7 +20,7 @@ const Header = () => {
         {menuItems.map((item) => (
           <TouchableOpacity
             key={item.label}
-            onPress={() => navigation.navigate(item.route)}  // navigim te route i saktë
+            onPress={() => navigation.navigate(item.route)}
             style={styles.menuItemWrapper}
           >
             <Text style={styles.menuItem}>{item.label}</Text>

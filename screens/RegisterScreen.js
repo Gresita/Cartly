@@ -10,7 +10,7 @@ const RegisterScreen = ({ navigation }) => {
   });
 
   const onChangeField = (field, value) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
+    setForm(prev => ({ ...prev, [field]: value }));
   };
 
   const onRegister = () => {
@@ -22,9 +22,8 @@ const RegisterScreen = ({ navigation }) => {
       Alert.alert('Error', 'Passwords do not match.');
       return;
     }
-    // Këtu mund të shtohet API regjistrimi
     Alert.alert('Success', 'Registered successfully!');
-    navigation.navigate('Login');
+    // Shto navigacion më vonë nëse dëshiron
   };
 
   return (
@@ -34,38 +33,38 @@ const RegisterScreen = ({ navigation }) => {
       <TextInput
         style={styles.input}
         placeholder="Full Name"
+        placeholderTextColor="#999"
         value={form.fullName}
-        onChangeText={(text) => onChangeField('fullName', text)}
+        onChangeText={text => onChangeField('fullName', text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Email"
+        placeholderTextColor="#999"
         keyboardType="email-address"
         value={form.email}
-        onChangeText={(text) => onChangeField('email', text)}
+        onChangeText={text => onChangeField('email', text)}
         autoCapitalize="none"
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
+        placeholderTextColor="#999"
         secureTextEntry
         value={form.password}
-        onChangeText={(text) => onChangeField('password', text)}
+        onChangeText={text => onChangeField('password', text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Confirm Password"
+        placeholderTextColor="#999"
         secureTextEntry
         value={form.confirmPassword}
-        onChangeText={(text) => onChangeField('confirmPassword', text)}
+        onChangeText={text => onChangeField('confirmPassword', text)}
       />
 
-      <TouchableOpacity style={styles.button} onPress={onRegister}>
+      <TouchableOpacity style={styles.button} onPress={onRegister} activeOpacity={0.8}>
         <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.loginText}>Already have an account? Login here.</Text>
       </TouchableOpacity>
     </View>
   );
@@ -73,42 +72,39 @@ const RegisterScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#d6dbf6',  // sfondi pak më i thellë blu si në screenshot
+    paddingHorizontal: 50,
     flex: 1,
-    backgroundColor: '#E7E9F4',
-    padding: 40,
     justifyContent: 'center',
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 40,
+    fontSize: 30,
+    fontWeight: '700',
+    color: '#283593',
+    marginBottom: 30,
     textAlign: 'center',
-    color: '#1a173b',
   },
   input: {
     backgroundColor: 'white',
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 15,
+    height: 48,
+    borderRadius: 24,
+    paddingHorizontal: 16,
     fontSize: 16,
-    marginBottom: 20,
+    marginBottom: 18,
+    color: '#1a173b',
   },
   button: {
     backgroundColor: '#283593',
-    paddingVertical: 16,
-    borderRadius: 10,
+    height: 48,
+    borderRadius: 24,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 15,
+    marginTop: 16,
   },
   buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: '#e0e7ff',
+    fontWeight: '700',
     fontSize: 18,
-  },
-  loginText: {
-    color: '#283593',
-    fontWeight: '600',
-    textAlign: 'center',
   },
 });
 

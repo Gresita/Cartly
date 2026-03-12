@@ -1,125 +1,125 @@
-import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import React from 'react';
+import { ScrollView, View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
-const { width } = Dimensions.get('window');
-
-const imagesSample = [
-  'https://via.placeholder.com/400x400?text=Image+1',
-  'https://via.placeholder.com/400x400?text=Image+2',
-  'https://via.placeholder.com/400x400?text=Image+3',
-];
+const screenHeight = Dimensions.get('window').height;
 
 const ProductDetailScreen = ({ route, navigation }) => {
   const { product } = route.params;
 
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const handleAddToCart = () => {
+    alert(`${product.title} u shtua në shportë!`);
+  };
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 40 }}>
-      {/* Emri dhe Kategoria */}
-      <Text style={styles.category}>{product.category}</Text>
-      <Text style={styles.productName}>{product.name}</Text>
-
-      {/* Carousel Imazhe */}
-      <View style={styles.imageCarousel}>
-        <Image
-          source={{ uri: imagesSample[selectedImageIndex] || product.image }}
-          style={styles.mainImage}
-          resizeMode="contain"
-        />
-        <View style={styles.thumbnailContainer}>
-          {imagesSample.map((img, idx) => (
-            <TouchableOpacity key={idx} onPress={() => setSelectedImageIndex(idx)}>
-              <Image source={{ uri: img }} style={[styles.thumbnail, selectedImageIndex === idx && styles.selectedThumbnail]} />
+    <View style={styles.container}>
+      {/* Menyja do shfaqet në App.js si header global */}
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.contentWrapper}>
+          {/* Fotoja në pjesën e majtë */}
+          <View style={styles.imageContainer}>
+            <Image source={{ uri: product.image }} style={styles.productImage} resizeMode="contain" />
+          </View>
+          {/* Detajet në pjesën e djathtë */}
+          <View style={styles.infoContainer}>
+            <Text style={styles.category}>{product.category}</Text>
+            <Text style={styles.title}>{product.title}</Text>
+            <Text style={styles.price}>${product.price.toFixed(2)}</Text>
+            <Text style={styles.sectionTitle}>Përshkrimi</Text>
+            <Text style={styles.description}>
+              Ky produkt është i dizajnuar me cilësi të lartë dhe ofron performancë të shkëlqyer.
+              Përshtatet për përdorim të përditshëm dhe garantohet me garancion.
+            </Text>
+            <TouchableOpacity style={styles.button} onPress={handleAddToCart}>
+              <Text style={styles.buttonText}>Shto në Shportë</Text>
             </TouchableOpacity>
-          ))}
+            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+              <Text style={styles.backButtonText}>Kthehu</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-
-      {/* Përshkrimi */}
-      <Text style={styles.description}>
-        Morbi justo sem, venenatis sit amet tortor id, porttitor facilisis metus. Ut scelerisque mauris vivamus
-        fringilla elit eu felis iaculis cursus. Integer ullamcorper libero vel orci tristique, in ullamcorper est luctus.
-      </Text>
-
-      {/* Çmimi */}
-      <Text style={styles.price}>Price: ${product.price}.00 USD</Text>
-
-      {/* Butoni për Shtim në Shportë */}
-      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('Cart')}>
-        <Text style={styles.addButtonText}>Add to Cart</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#E7E9F4',
-    flex: 1,
-    padding: 40,
+    height: screenHeight, // 100% height i ekranit
+    backgroundColor: '#f7f9ff',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    padding: 25,
+    justifyContent: 'center',
+  },
+  contentWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  imageContainer: {
+    width: '45%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  productImage: {
+    width: '100%',
+    height: 320,
+    borderRadius: 15,
+  },
+  infoContainer: {
+    width: '50%',
+    justifyContent: 'flex-start',
   },
   category: {
     fontSize: 14,
-    color: '#777',
-    marginBottom: 5,
+    color: '#8d93b3',
+    marginBottom: 10,
+    textTransform: 'capitalize',
   },
-  productName: {
-    fontSize: 28,
+  title: {
+    fontSize: 26,
     fontWeight: 'bold',
-    color: '#1a173b',
-    marginBottom: 20,
+    color: '#344376',
+    marginBottom: 15,
   },
-  imageCarousel: {
-    marginBottom: 30,
+  price: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#3950a6',
+    marginBottom: 25,
   },
-  mainImage: {
-    width: width - 80,
-    height: width - 80,
-    borderRadius: 15,
-    backgroundColor: 'white',
-  },
-  thumbnailContainer: {
-    flexDirection: 'row',
-    marginTop: 15,
-    justifyContent: 'center',
-  },
-  thumbnail: {
-    width: 80,
-    height: 80,
-    borderRadius: 10,
-    marginHorizontal: 10,
-    opacity: 0.6,
-    borderWidth: 1,
-    borderColor: 'transparent',
-  },
-  selectedThumbnail: {
-    opacity: 1,
-    borderColor: '#283593',
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#283593',
+    marginBottom: 10,
   },
   description: {
     fontSize: 16,
-    color: '#1a173b',
     lineHeight: 24,
-    marginBottom: 25,
+    color: '#5e6278',
+    marginBottom: 35,
   },
-  price: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#283593',
-    marginBottom: 25,
-  },
-  addButton: {
-    backgroundColor: '#283593',
+  button: {
+    backgroundColor: '#3950a6',
+    paddingVertical: 16,
     borderRadius: 12,
-    paddingVertical: 15,
     alignItems: 'center',
-    width: '100%',
+    marginBottom: 15,
   },
-  addButtonText: {
-    color: 'white',
+  buttonText: {
+    color: '#f0f3ff',
     fontWeight: 'bold',
     fontSize: 18,
+  },
+  backButton: {
+    alignItems: 'center',
+  },
+  backButtonText: {
+    color: '#3950a6',
+    fontWeight: '600',
+    fontSize: 16,
+    textDecorationLine: 'underline',
   },
 });
 

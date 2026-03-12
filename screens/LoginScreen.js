@@ -10,7 +10,6 @@ const LoginScreen = ({ navigation }) => {
       Alert.alert('Error', 'Please enter both email and password.');
       return;
     }
-    // Këtu mund të shtohet logjika e autentifikimit (API call)
     Alert.alert('Success', 'Logged in successfully!');
     navigation.navigate('Home');
   };
@@ -18,24 +17,31 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back!</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      <TouchableOpacity style={styles.button} onPress={onLogin}>
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          placeholderTextColor="#999"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          placeholderTextColor="#999"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+      </View>
+
+      <TouchableOpacity style={styles.button} onPress={onLogin} activeOpacity={0.8}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
         <Text style={styles.registerText}>Don't have an account? Register here.</Text>
       </TouchableOpacity>
@@ -46,41 +52,48 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E7E9F4',
-    padding: 40,
+    backgroundColor: '#dce2ff',
     justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 50,
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
+    fontSize: 30,
+    fontWeight: '700',
+    color: '#283593',
     marginBottom: 40,
-    textAlign: 'center',
-    color: '#1a173b',
+  },
+  inputContainer: {
+    width: '50%',
   },
   input: {
     backgroundColor: 'white',
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 15,
+    height: 50,
+    borderRadius: 15,
+    paddingHorizontal: 20,
     fontSize: 16,
     marginBottom: 20,
+    color: '#333',
   },
   button: {
     backgroundColor: '#283593',
-    paddingVertical: 16,
-    borderRadius: 10,
+    width: '50%',
+    paddingVertical: 15,
+    borderRadius: 15,
     alignItems: 'center',
     marginBottom: 15,
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: '700',
     fontSize: 18,
   },
   registerText: {
     color: '#283593',
     fontWeight: '600',
+    fontSize: 14,
     textAlign: 'center',
+    textDecorationLine: 'underline',
   },
 });
 

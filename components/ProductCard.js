@@ -3,52 +3,42 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
 const ProductCard = ({ product }) => (
   <View style={styles.card}>
-    <Image source={product.image} style={styles.image} />
-    <Text style={styles.category}>{product.category}</Text>
-    <Text style={styles.name}>{product.name}</Text>
-    <Text style={styles.price}>{product.price}</Text>
+    <Image source={{ uri: product.image }} style={styles.image} resizeMode="contain" />
+    <Text style={styles.name} numberOfLines={2}>{product.title}</Text>
+    <Text style={styles.price}>${product.price}</Text>
   </View>
 );
 
 const styles = StyleSheet.create({
   card: {
-    width: 180,
+    width: 190,
     backgroundColor: '#fff',
-    borderRadius: 20,
-    padding: 20,
-    alignItems: 'center',
-    shadowColor: '#182154',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 6,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    
-  },
-
-  image: {
-    width: 150,
-    height: 150,
     borderRadius: 15,
-    marginBottom: 15,
+    padding: 15,
+    margin: 8,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 4,
   },
-  category: {
-    fontSize: 12,
-    color: '#6b6f8c',
-    marginBottom: 5,
+  image: {
+    width: 140,
+    height: 140,
+    borderRadius: 12,
+    marginBottom: 10,
   },
   name: {
-    fontWeight: '700',
+    fontWeight: 'bold',
     fontSize: 16,
-    marginBottom: 5,
     color: '#182154',
+    marginBottom: 5,
     textAlign: 'center',
   },
   price: {
-    fontWeight: '700',
-    fontSize: 15,
+    fontSize: 14,
+    fontWeight: '600',
     color: '#3950A6',
   },
 });

@@ -8,11 +8,11 @@ import ProductsScreen from './screens/ProductsScreen';
 import ProductDetailScreen from './screens/ProductDetailScreen';
 import CartScreen from './screens/CartScreen';
 import AboutScreen from './screens/AboutScreen';
+import Header from './components/Header';
 import CheckoutScreen from './screens/CheckoutScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
-
 const Stack = createNativeStackNavigator();
 
 const HeaderMenu = () => {
@@ -28,20 +28,19 @@ const HeaderMenu = () => {
         <TouchableOpacity onPress={() => navigation.navigate('Products')}>
           <Text style={styles.menuItem}>Products</Text>
         </TouchableOpacity>
-        {/* KETU ËSHTË RREGULLIMI: navigation.navigate në vend të alert */}
         <TouchableOpacity onPress={() => navigation.navigate('About')}>
           <Text style={styles.menuItem}>About</Text>
         </TouchableOpacity>
-   
+        
+
+
       </View>
-      <TouchableOpacity
-        style={styles.cartButton}
-        onPress={() => navigation.navigate('Cart')}
-      >
-        <Text style={styles.cartText}>🛒 Cart</Text>
-      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.menuItem}>Login</Text>
+        </TouchableOpacity>
     </View>
   );
+  
 };
 
 export default function App() {
