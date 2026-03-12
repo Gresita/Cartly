@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import React, { useEffect, useState, useContext } from 'react';
+import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { fetchData } from '../services/api';
+import { CartContext } from '../context/CartContext';
+import { Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
 const CARD_MARGIN = 12;
@@ -19,6 +12,7 @@ const CARD_WIDTH = (width - (CARD_MARGIN * (NUM_COLUMNS + 1))) / NUM_COLUMNS;
 
 const ProductsScreen = () => {
   const navigation = useNavigation();
+  const { addToCart } = useContext(CartContext); // Merr funksionin shtu ne shporte
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,11 +39,11 @@ const ProductsScreen = () => {
       setFilteredProducts(products);
       return;
     }
-    const filtered = products.filter((prod) => prod.category === category);
+    const filtered = products.filter(prod => prod.category === category);
     setFilteredProducts(filtered);
   };
 
-  const categories = [...new Set(products.map((p) => p.category))];
+  const categories = [...new Set(products.map(p => p.category))];
 
   if (loading) {
     return (
@@ -66,10 +60,11 @@ const ProductsScreen = () => {
       style={[styles.card, { width: CARD_WIDTH, marginLeft: CARD_MARGIN }]}
     >
       <Image source={{ uri: item.image }} style={styles.image} resizeMode="contain" />
-      <Text style={styles.name} numberOfLines={2}>
-        {item.title}
-      </Text>
+      <Text style={styles.name} numberOfLines={2}>{item.title}</Text>
       <Text style={styles.price}>${item.price}</Text>
+      <TouchableOpacity style={styles.addButton} onPress={() => addToCart(item)}>
+        <Text style={styles.addButtonText}>Add to Cart</Text>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 
@@ -78,45 +73,25 @@ const ProductsScreen = () => {
       <Text style={styles.header}>Products</Text>
       <View style={styles.categoryContainer}>
         <TouchableOpacity
-          style={[
-            styles.categoryButton,
-            selectedCategory === '' && styles.categoryButtonActive,
-          ]}
+          style={[styles.categoryButton, selectedCategory === '' && styles.categoryButtonActive]}
           onPress={() => filterByCategory('')}
         >
-          <Text
-            style={[
-              styles.categoryButtonText,
-              selectedCategory === '' && styles.categoryButtonTextActive,
-            ]}
-          >
-            All
-          </Text>
+          <Text style={[styles.categoryButtonText, selectedCategory === '' && styles.categoryButtonTextActive]}>All</Text>
         </TouchableOpacity>
-        {categories.map((cat) => (
+        {categories.map(cat => (
           <TouchableOpacity
             key={cat}
-            style={[
-              styles.categoryButton,
-              selectedCategory === cat && styles.categoryButtonActive,
-            ]}
+            style={[styles.categoryButton, selectedCategory === cat && styles.categoryButtonActive]}
             onPress={() => filterByCategory(cat)}
           >
-            <Text
-              style={[
-                styles.categoryButtonText,
-                selectedCategory === cat && styles.categoryButtonTextActive,
-              ]}
-            >
-              {cat}
-            </Text>
+            <Text style={[styles.categoryButtonText, selectedCategory === cat && styles.categoryButtonTextActive]}>{cat}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
       <FlatList
         data={filteredProducts}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id.toString()}
         renderItem={renderProduct}
         numColumns={NUM_COLUMNS}
         columnWrapperStyle={{ justifyContent: 'flex-start' }}
@@ -161,7 +136,6 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     marginBottom: 20,
-    // shadow efekti per theksim
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 6,
@@ -185,6 +159,18 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 14,
     color: '#3950A6',
+  },
+  addButton: {
+    marginTop: 8,
+    backgroundColor: '#283593',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+  },
+  addButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
   noProducts: {
     textAlign: 'center',

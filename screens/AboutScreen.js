@@ -1,171 +1,278 @@
+
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const AboutScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Hero Section */}
-      <View style={styles.heroSection}>
-        <Text style={styles.heroTitle}>Rreth Nesh</Text>
+
+      {/* HERO SECTION */}
+      <View style={styles.hero}>
+        <Text style={styles.heroTitle}>Welcome to Cartly</Text>
         <Text style={styles.heroSubtitle}>
-          Zbuloni botën e teknologjisë audio me Cartly
+          Your destination for modern tech, audio gear and smart gadgets.
         </Text>
-        
-      </View>
 
-      {/* Mission Section */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Misioni Jonë</Text>
-        <Text style={styles.sectionDescription}>
-          Në Cartly, ne kemi një mision të thjeshtë: të sjellim produkte audio dhe elektronike
-          me cilësi të lartë në shtëpinë tuaj. Ne besojmë se çdo klient meriton akses
-          në teknologjinë më të fundit në çmime të arsyeshme.
-        </Text>
-      </View>
-
-      {/* Values Section */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Vlerat Tona</Text>
-        <View style={styles.valuesList}>
-          <View style={styles.valueItem}>
-            <Text style={styles.valueIcon}>🚀</Text>
-            <Text style={styles.valueTitle}>Inovacion</Text>
-            <Text style={styles.valueDescription}>
-              Jemi gjithmonë në kërkim të produkteve më të reja dhe teknologjisë së fundit.
-            </Text>
-          </View>
-          <View style={styles.valueItem}>
-            <Text style={styles.valueIcon}>💎</Text>
-            <Text style={styles.valueTitle}>Cilësi</Text>
-            <Text style={styles.valueDescription}>
-              Çdo produkt kalon një proces të rreptë kontrolli cilësie përpara se të arrijë tek ju.
-            </Text>
-          </View>
-          <View style={styles.valueItem}>
-            <Text style={styles.valueIcon}>🤝</Text>
-            <Text style={styles.valueTitle}>Besnikëri</Text>
-            <Text style={styles.valueDescription}>
-              Ndërtojmë marrëdhënie të qëndrueshme me klientët përmes shërbimit të shkëlqyer.
-            </Text>
-          </View>
+        <View style={styles.heroBadge}>
+          <Text style={styles.heroBadgeText}>Innovation Meets Simplicity</Text>
         </View>
       </View>
 
-      {/* Contact Section */}
+
+      {/* STATS SECTION */}
+      <View style={styles.statsContainer}>
+
+        <View style={styles.statCard}>
+          <Text style={styles.statNumber}>10K+</Text>
+          <Text style={styles.statLabel}>Customers</Text>
+        </View>
+
+        <View style={styles.statCard}>
+          <Text style={styles.statNumber}>500+</Text>
+          <Text style={styles.statLabel}>Products</Text>
+        </View>
+
+        <View style={styles.statCard}>
+          <Text style={styles.statNumber}>4.9★</Text>
+          <Text style={styles.statLabel}>Rating</Text>
+        </View>
+
+      </View>
+
+
+      {/* MISSION */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Kontakto Na</Text>
-        <Text style={styles.sectionDescription}>
-          Jeni të mirëpritur të na kontaktoni për çdo pyetje apo bashkëpunim.
+        <Text style={styles.sectionTitle}>Our Mission</Text>
+
+        <Text style={styles.sectionText}>
+          At Cartly we believe technology should improve everyday life.
+          Our mission is to make premium electronics accessible,
+          stylish and easy to shop online.
         </Text>
-        <TouchableOpacity style={styles.contactButton}>
-          <Text style={styles.contactButtonText}>Na Kontaktoni</Text>
+      </View>
+
+
+      {/* VALUES */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>What Drives Us</Text>
+
+        <View style={styles.valuesContainer}>
+
+          <View style={[styles.valueCard, {backgroundColor:"#EEF1FF"}]}>
+            <Text style={styles.icon}>🚀</Text>
+            <Text style={styles.valueTitle}>Innovation</Text>
+            <Text style={styles.valueText}>
+              We constantly explore the newest technologies.
+            </Text>
+          </View>
+
+          <View style={[styles.valueCard, {backgroundColor:"#E7F6FF"}]}>
+            <Text style={styles.icon}>💎</Text>
+            <Text style={styles.valueTitle}>Quality</Text>
+            <Text style={styles.valueText}>
+              Every product is carefully selected.
+            </Text>
+          </View>
+
+          <View style={[styles.valueCard, {backgroundColor:"#FFF4E8"}]}>
+            <Text style={styles.icon}>🤝</Text>
+            <Text style={styles.valueTitle}>Trust</Text>
+            <Text style={styles.valueText}>
+              Customers are always our priority.
+            </Text>
+          </View>
+
+        </View>
+      </View>
+
+
+      {/* CTA SECTION */}
+      <View style={styles.ctaSection}>
+        <Text style={styles.ctaTitle}>Experience Cartly Today</Text>
+
+        <Text style={styles.ctaText}>
+          Discover the future of shopping and explore our premium products.
+        </Text>
+
+        <TouchableOpacity style={styles.ctaButton}>
+          <Text style={styles.ctaButtonText}>Browse Products</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Footer */}
+
+      {/* FOOTER */}
       <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2026 Cartly. Të gjitha të drejtat e rezervuara.</Text>
+        <Text style={styles.footerText}>
+          © 2026 Cartly • Built with passion for technology
+        </Text>
       </View>
+
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 30,
-    backgroundColor: '#ebeffb',
-    alignItems: 'center',
-  },
-  heroSection: {
-    alignItems: 'center',
-    marginBottom: 40,
-  },
-  heroTitle: {
-    fontSize: 34,
-    fontWeight: 'bold',
-    color: '#182154',
-    marginBottom: 10,
-  },
-  heroSubtitle: {
-    fontSize: 16,
-    color: '#50577a',
-    marginBottom: 20,
-    textAlign: 'center',
-    maxWidth: 600,
-  },
-  heroImage: {
-    width: 250,
-    height: 250,
-    borderRadius: 20,
-  },
-  section: {
-    width: '100%',
-    maxWidth: 700,
-    marginBottom: 40,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: '#182154',
-    marginBottom: 15,
-  },
-  sectionDescription: {
-    fontSize: 16,
-    color: '#50577a',
-    lineHeight: 23,
-  },
-  valuesList: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  valueItem: {
-    width: '30%',
-    backgroundColor: '#fff',
-    borderRadius: 15,
-    padding: 20,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 7,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 5,
-  },
-  valueIcon: {
-    fontSize: 36,
-    marginBottom: 12,
-  },
-  valueTitle: {
-    fontWeight: '700',
-    fontSize: 18,
-    color: '#182154',
-    marginBottom: 8,
-  },
-  valueDescription: {
-    fontSize: 14,
-    color: '#50577a',
-    textAlign: 'center',
-  },
-  contactButton: {
-    marginTop: 20,
-    backgroundColor: '#3950A6',
-    paddingVertical: 16,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  contactButtonText: {
-    color: 'white',
-    fontWeight: '700',
-    fontSize: 16,
-  },
-  footer: {
-    marginTop: 50,
-    paddingVertical: 20,
-  },
-  footerText: {
-    fontSize: 12,
-    color: '#50577a',
-    textAlign: 'center',
-  },
+
+container:{
+  padding:25,
+  backgroundColor:"#F6F8FF"
+},
+
+hero:{
+  backgroundColor:"#283593",
+  padding:35,
+  borderRadius:20,
+  alignItems:"center",
+  marginBottom:30
+},
+
+heroTitle:{
+  fontSize:34,
+  fontWeight:"bold",
+  color:"white",
+  marginBottom:10
+},
+
+heroSubtitle:{
+  fontSize:16,
+  color:"#E0E4FF",
+  textAlign:"center",
+  marginBottom:20
+},
+
+heroBadge:{
+  backgroundColor:"white",
+  paddingHorizontal:15,
+  paddingVertical:6,
+  borderRadius:20
+},
+
+heroBadgeText:{
+  color:"#283593",
+  fontWeight:"600"
+},
+
+statsContainer:{
+  flexDirection:"row",
+  justifyContent:"space-between",
+  marginBottom:35
+},
+
+statCard:{
+  backgroundColor:"white",
+  width:"31%",
+  borderRadius:16,
+  padding:18,
+  alignItems:"center",
+  shadowColor:"#000",
+  shadowOpacity:0.1,
+  shadowRadius:6,
+  shadowOffset:{width:0,height:3},
+  elevation:4
+},
+
+statNumber:{
+  fontSize:22,
+  fontWeight:"bold",
+  color:"#283593"
+},
+
+statLabel:{
+  fontSize:14,
+  color:"#666"
+},
+
+section:{
+  marginBottom:35
+},
+
+sectionTitle:{
+  fontSize:24,
+  fontWeight:"bold",
+  color:"#182154",
+  marginBottom:12
+},
+
+sectionText:{
+  fontSize:16,
+  color:"#5f6687",
+  lineHeight:24
+},
+
+valuesContainer:{
+  flexDirection:"row",
+  justifyContent:"space-between"
+},
+
+valueCard:{
+  width:"31%",
+  padding:18,
+  borderRadius:16,
+  alignItems:"center"
+},
+
+icon:{
+  fontSize:32,
+  marginBottom:10
+},
+
+valueTitle:{
+  fontSize:16,
+  fontWeight:"bold",
+  color:"#182154",
+  marginBottom:6
+},
+
+valueText:{
+  fontSize:13,
+  textAlign:"center",
+  color:"#6a6f8c"
+},
+
+ctaSection:{
+  backgroundColor:"#182154",
+  padding:30,
+  borderRadius:20,
+  alignItems:"center",
+  marginTop:10
+},
+
+ctaTitle:{
+  fontSize:26,
+  fontWeight:"bold",
+  color:"white",
+  marginBottom:10
+},
+
+ctaText:{
+  color:"#cdd2ff",
+  textAlign:"center",
+  marginBottom:20
+},
+
+ctaButton:{
+  backgroundColor:"#3950A6",
+  paddingVertical:14,
+  paddingHorizontal:30,
+  borderRadius:12
+},
+
+ctaButtonText:{
+  color:"white",
+  fontWeight:"bold",
+  fontSize:16
+},
+
+footer:{
+  marginTop:40,
+  alignItems:"center"
+},
+
+footerText:{
+  color:"#7a7f99",
+  fontSize:13
+}
+
 });
 
 export default AboutScreen;
